@@ -1,0 +1,37 @@
+cat <<EOF | kubectl create -f -
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: access-redis
+spec:
+  podSelector:
+    matchLabels:
+      app: redis
+  ingress:
+  - from: []
+EOF
+
+cat <<EOF | kubectl create -f -
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: access-http-echo-1
+spec:
+  podSelector:
+    matchLabels:
+      app: http-echo-1
+  ingress:
+  - from: []
+EOF
+
+cat <<EOF | kubectl create -f -
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: access-http-echo-2
+spec:
+  podSelector:
+    matchLabels:
+      app: http-echo-2
+  ingress:
+  - from: []
